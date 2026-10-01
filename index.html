@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>For You ❤️</title>
+<title>A Little About Me ♡</title>
 
 <style>
+
 * {
     margin: 0;
     padding: 0;
@@ -14,156 +15,577 @@
 }
 
 body {
+    width: 100%;
     height: 100vh;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
+
+    font-family: "Trebuchet MS", sans-serif;
     color: white;
-    background: linear-gradient(135deg, #090014, #28001f, #12001f);
+
+    background:
+        linear-gradient(
+            rgba(10, 5, 30, 0.45),
+            rgba(15, 0, 35, 0.65)
+        ),
+        url("background1.png") center/cover no-repeat;
+
+    position: relative;
 }
+
+/* OVERLAY */
+
+body::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 10%,
+            rgba(0,0,20,0.5)
+        );
+
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* TOP TEXT */
+
+.top {
+    position: absolute;
+    top: 25px;
+    left: 30px;
+
+    font-size: 16px;
+    font-style: italic;
+
+    text-shadow:
+        0 0 10px #ff75c8;
+
+    z-index: 10;
+}
+
+.corner {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+
+    font-size: 17px;
+    font-style: italic;
+
+    text-shadow:
+        0 0 10px #ff75c8;
+
+    z-index: 10;
+}
+
+/* MAIN */
 
 .container {
+
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
     text-align: center;
-    padding: 30px;
-    z-index: 2;
-    animation: fade 2s ease;
+
+    padding: 25px;
+
+    z-index: 5;
 }
+
+/* TITLE */
 
 h1 {
-    font-size: 40px;
-    margin-bottom: 15px;
+
+    font-size: clamp(40px, 7vw, 75px);
+
+    font-weight: 500;
+
+    font-style: italic;
+
+    margin-bottom: 25px;
+
+    opacity: 0;
+
+    animation:
+        titleAppear 2s ease forwards;
+
+    text-shadow:
+        0 0 10px #ff9bdb,
+        0 0 25px #ff4fc4,
+        0 0 50px #ff4fc4;
 }
 
-p {
-    font-size: 18px;
-    line-height: 1.6;
-    opacity: .85;
-}
+@keyframes titleAppear {
 
-button {
-    margin-top: 25px;
-    padding: 14px 30px;
-    border: none;
-    border-radius: 30px;
-    background: #ff4f81;
-    color: white;
-    font-size: 17px;
-    cursor: pointer;
-    transition: .3s;
-}
-
-button:hover {
-    transform: scale(1.08);
-}
-
-#message {
-    display: none;
-    margin-top: 25px;
-    font-size: 20px;
-    line-height: 1.6;
-}
-
-.heart {
-    position: absolute;
-    bottom: -40px;
-    animation: naik linear forwards;
-}
-
-@keyframes naik {
-    from {
-        transform: translateY(0) rotate(0deg);
+    0% {
         opacity: 0;
+        transform: translateY(-40px) scale(0.8);
     }
 
-    20% {
+    100% {
         opacity: 1;
+        transform: translateY(0) scale(1);
     }
 
-    to {
-        transform: translateY(-110vh) rotate(360deg);
-        opacity: 0;
-    }
 }
 
-@keyframes fade {
+/* SUBTITLE */
+
+.subtitle {
+
+    font-size: 19px;
+
+    line-height: 1.7;
+
+    max-width: 600px;
+
+    opacity: 0;
+
+    animation:
+        fadeUp 2s ease 1s forwards;
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,0.5);
+}
+
+@keyframes fadeUp {
+
     from {
         opacity: 0;
         transform: translateY(30px);
     }
 
     to {
-        opacity: 1;
+        opacity: 0.9;
         transform: translateY(0);
     }
+
 }
+
+/* BUTTON */
+
+.open-button {
+
+    margin-top: 30px;
+
+    padding: 16px 38px;
+
+    border-radius: 50px;
+
+    border:
+        1px solid rgba(255,255,255,0.5);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,70,160,0.6),
+            rgba(255,120,200,0.45)
+        );
+
+    color: white;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 0 20px rgba(255,80,180,0.5);
+
+    opacity: 0;
+
+    animation:
+        fadeUp 2s ease 1.8s forwards;
+
+    transition: 0.3s;
+}
+
+.open-button:hover {
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 25px #ff54bd,
+        0 0 60px rgba(255,84,189,0.6);
+}
+
+.open-button:active {
+
+    transform: scale(0.95);
+
+}
+
+/* ABOUT CARD */
+
+.about {
+
+    display: none;
+
+    max-width: 650px;
+
+    margin-top: 25px;
+
+    padding: 25px;
+
+    border-radius: 25px;
+
+    background:
+        rgba(20,5,35,0.5);
+
+    border:
+        1px solid rgba(255,255,255,0.2);
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 0 35px rgba(255,80,180,0.25);
+
+    animation:
+        cardAppear 1.5s ease forwards;
+}
+
+@keyframes cardAppear {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(40px)
+            scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+.about p {
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+    font-style: italic;
+
+    margin-bottom: 15px;
+
+}
+
+.highlight {
+
+    color: #ffb6e8;
+
+    text-shadow:
+        0 0 10px #ff5fc4;
+}
+
+/* FLOATING EMOJIS */
+
+.floating {
+
+    position: absolute;
+
+    bottom: -60px;
+
+    z-index: 3;
+
+    pointer-events: none;
+
+    animation:
+        floatUp linear forwards;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(255,255,255,0.8)
+        );
+}
+
+@keyframes floatUp {
+
+    0% {
+
+        transform:
+            translateY(0)
+            translateX(0)
+            rotate(0deg)
+            scale(0.6);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    50% {
+
+        transform:
+            translateY(-60vh)
+            translateX(30px)
+            rotate(180deg)
+            scale(1.1);
+    }
+
+    100% {
+
+        transform:
+            translateY(-120vh)
+            translateX(-30px)
+            rotate(360deg)
+            scale(0.7);
+
+        opacity: 0;
+    }
+
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    h1 {
+        font-size: 40px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    .about {
+        max-height: 55vh;
+        overflow-y: auto;
+    }
+
+    .about p {
+        font-size: 15px;
+    }
+
+    .top {
+        left: 18px;
+        top: 18px;
+    }
+
+    .corner {
+        right: 18px;
+        top: 18px;
+    }
+
+}
+
 </style>
 </head>
 
 <body>
 
-<audio id="music" loop>
-    <source src="rahasia-hati.mp3" type="audio/mpeg">
-</audio>
+<!-- TOP -->
+
+<div class="top">
+    ✨ A Little About Me
+</div>
+
+<div class="corner">
+    For You ♡
+</div>
+
+
+<!-- MAIN -->
 
 <div class="container">
 
-    <h1>I Hope You Love Me Too ❤️</h1>
+    <h1>
+        This Is Me ♡
+    </h1>
 
-    <p>
-        There is something<br>
-        I've been keeping in my heart...
-    </p>
+    <div class="subtitle">
 
-    <button onclick="openMessage()">
-        Open My Heart 💌
+        Maybe you don't know much about me yet...<br>
+
+        So let me tell you a little story about myself.
+
+    </div>
+
+
+    <button
+        class="open-button"
+        onclick="openAbout()"
+    >
+
+        💌 Get To Know Me ✨
+
     </button>
 
-    <div id="message">
-        Maybe I can't say everything directly.<br>
-        So I put it here instead.<br><br>
 
-        <strong>I hope you love me too. ❤️</strong>
+    <!-- ABOUT -->
+
+    <div
+        class="about"
+        id="about"
+    >
+
+        <p>
+            I'm someone who enjoys simple things,
+            quiet moments, and doing things that
+            make me happy.
+        </p>
+
+        <p>
+            I like <span class="highlight">playing games</span>,
+            listening to music, exploring new things,
+            and enjoying beautiful places,
+            especially the mountains.
+        </p>
+
+        <p>
+            I'm still learning, still growing,
+            and sometimes I have a lot of thoughts
+            that I don't know how to explain.
+        </p>
+
+        <p>
+            I may not be perfect,
+            but I always try to become
+            a better version of myself.
+        </p>
+
+        <p>
+            I'm just a simple person with
+            <span class="highlight">
+            a little bit of chaos
+            </span>
+            and a heart full of dreams. ♡
+        </p>
+
+        <p>
+            And maybe...
+
+            <br><br>
+
+            <strong class="highlight">
+                That's all I wanted you to know about me. ✨
+            </strong>
+        </p>
+
     </div>
 
 </div>
 
+
 <script>
 
-function openMessage() {
+/* OPEN ABOUT */
 
-    const music = document.getElementById("music");
+function openAbout() {
 
-    music.play();
+    const about =
+        document.getElementById("about");
 
-    document.getElementById("message").style.display = "block";
+    about.style.display = "block";
+
+    createManyEmojis();
 
 }
 
-function createHeart() {
 
-    const heart = document.createElement("div");
+/* CREATE EMOJI */
 
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
+function createEmoji() {
 
-    heart.style.left = Math.random() * 100 + "vw";
+    const emoji =
+        document.createElement("div");
 
-    heart.style.fontSize =
-        (15 + Math.random() * 25) + "px";
+    emoji.className =
+        "floating";
 
-    heart.style.animationDuration =
-        (4 + Math.random() * 5) + "s";
 
-    document.body.appendChild(heart);
+    const emojis = [
+
+        "✨",
+        "🥶",
+        "🗿",
+        "😈",
+        "😎"
+
+    ];
+
+
+    emoji.innerHTML =
+        emojis[
+            Math.floor(
+                Math.random() *
+                emojis.length
+            )
+        ];
+
+
+    emoji.style.left =
+        Math.random() * 100 + "vw";
+
+
+    emoji.style.fontSize =
+        (18 + Math.random() * 28)
+        + "px";
+
+
+    emoji.style.animationDuration =
+        (5 + Math.random() * 5)
+        + "s";
+
+
+    document.body.appendChild(
+        emoji
+    );
+
 
     setTimeout(() => {
-        heart.remove();
-    }, 9000);
+
+        emoji.remove();
+
+    }, 11000);
+
 }
 
-setInterval(createHeart, 400);
+
+/* INITIAL EMOJIS */
+
+function createManyEmojis() {
+
+    for (
+        let i = 0;
+        i < 15;
+        i++
+    ) {
+
+        setTimeout(
+            createEmoji,
+            i * 180
+        );
+
+    }
+
+}
+
+
+/* CONTINUOUS EMOJIS */
+
+setInterval(
+    createEmoji,
+    700
+);
 
 </script>
 
