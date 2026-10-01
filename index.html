@@ -225,7 +225,70 @@ h1 {
     transform: scale(0.95);
 
 }
+/* MUSIC PLAYER */
+    music-player {
 
+            position: absolute;
+
+            left: 25px;
+            bottom: 25px;
+
+            width: 360px;
+            max-width: calc(100% - 50px);
+
+            padding: 18px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(5, 0, 20, 0.55);
+
+            border:
+                1px solid rgba(255,255,255,0.15);
+
+            backdrop-filter: blur(12px);
+
+            box-shadow:
+                0 0 30px rgba(0,0,0,0.4);
+
+            z-index: 10;
+        }
+
+
+        .song-info {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .album {
+
+            width: 55px;
+            height: 55px;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff75bf,
+                    #6e38c7
+                );
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            font-size: 25px;
+
+            box-shadow:
+                0 0 15px rgba(255,80,190,0.5);
+        }
 /* ABOUT CARD */
 
 .about {
